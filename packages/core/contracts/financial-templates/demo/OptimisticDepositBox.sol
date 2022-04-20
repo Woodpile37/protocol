@@ -262,6 +262,7 @@ contract OptimisticDepositBox is Testable, Lockable {
         OptimisticOracleInterface oracle = _getOptimisticOracle();
         // For other use cases, you may need ancillary data or a reward. Here, they are both zero.
         oracle.requestPrice(priceIdentifier, requestedTime, "", IERC20(collateralCurrency), 0);
+        oracle.setCustomLiveness(priceIdentifier,requestedTime,"",90);
     }
 
     function _resetWithdrawalRequest(OptimisticDepositBoxData storage depositBoxData) internal {

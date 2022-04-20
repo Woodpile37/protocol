@@ -118,5 +118,9 @@
   {
     "contractName": "Multicall2",
     "address": "0x5ba1e12693dc8f9c48aad8770482f4739beed696"
+  },
+  {
+    "contractName": "OptimisticDepositBox",
+    "address": "0xCd2bB363387dccAC0F7D69C5711D052B6e9E09eE"
   }
 ]
