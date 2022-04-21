@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// To run the script, include the MNEMONIC and CUSTOM_NODE_URL variables in a .env file. Run the following command (from repo root):
+// HARDHAT_NETWORK=kovan node ./packages/scripts/src/demo/LSP-demo-deploy.js
+
 // Helper modules
 const { web3 } = require("hardhat");
 const { utf8ToHex, padRight, toWei } = web3.utils;

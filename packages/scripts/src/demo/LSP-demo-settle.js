@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// To run the script, include the MNEMONIC and CUSTOM_NODE_URL variables in a .env file. Run the following command (from repo root):
+// HARDHAT_NETWORK=kovan node ./packages/scripts/src/demo/LSP-demo-settle.js
+
 // Helper modules
 const { getContract, web3 } = require("hardhat");
 const { toWei, fromWei } = web3.utils;
@@ -20,7 +23,7 @@ const settle = async () => {
 
   console.log("Calling settle on the LSP contract...");
   await lspContract.methods.settle(longTokensToSettle, shortTokensToSettle).send({ from: deployer });
-  console.log(`- Settled ${fromWei(longTokensToSettle)} long tokens and ${fromWei(shortTokensToSettle)} short token`);
+  console.log(`- Settled ${fromWei(longTokensToSettle)} long token(s) and ${fromWei(shortTokensToSettle)} short token(s)`);
 };
 
 // Run script.
