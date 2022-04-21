@@ -13,7 +13,7 @@ const { lspAddress } = require("./latest-deployment-details.json");
 const chainId = 42;
 const proposedValue = toWei(toBN(1));
 
-// Propose a price for OptimisticDepositBox request.
+// Propose a price for the request.
 const propose = async () => {
   const accounts = await web3.eth.getAccounts();
   const [deployer] = accounts;
@@ -36,8 +36,6 @@ const propose = async () => {
     });
 
   console.group("Proposing a value to the Optimistic Oracle for the price request ...");
-  // Propose a price to the Optimistic Oracle for the OptimisticDepositBox contract. This price must be a
-  // positive integer.
   await optimisticOracle.methods
     .proposePriceFor(
       accounts[0],
