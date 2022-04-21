@@ -3,9 +3,9 @@
 // Helper modules
 const { getContract, web3 } = require("hardhat");
 const { toWei, fromWei } = web3.utils;
+const { lspAddress } = require("./latest-deployment-details.json");
 
 // Constants to update
-const lspAddress = "0xD0d8e0ab5529D1Ec025DE9C2504ef9D3aE076ff8";
 const longTokensToSettle = toWei("1");
 const shortTokensToSettle = toWei("1");
 

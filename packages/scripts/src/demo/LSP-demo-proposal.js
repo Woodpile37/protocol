@@ -4,10 +4,10 @@
 const { getAddress } = require("@uma/contracts-node");
 const { getContract, web3 } = require("hardhat");
 const { toBN, toWei } = web3.utils;
+const { lspAddress } = require("./latest-deployment-details.json");
 
 // Constants to update
 const chainId = 42;
-const deployedContract = "0xD0d8e0ab5529D1Ec025DE9C2504ef9D3aE076ff8";
 const proposedValue = toWei(toBN(1));
 
 // Propose a price for OptimisticDepositBox request.
@@ -23,7 +23,7 @@ const propose = async () => {
   const fromBlock = latestBlock - 10000;
   const requests = await optimisticOracle.getPastEvents("RequestPrice", { fromBlock: fromBlock });
   const lspRequest = requests
-    .filter((request) => request.returnValues.requester === deployedContract)
+    .filter((request) => request.returnValues.requester === lspAddress)
     .map((request) => {
       return {
         timestamp: request.returnValues.timestamp,
@@ -38,7 +38,7 @@ const propose = async () => {
   await optimisticOracle.methods
     .proposePriceFor(
       accounts[0],
-      deployedContract,
+      lspAddress,
       lspRequest[0].identifier,
       lspRequest[0].timestamp,
       lspRequest[0].ancillaryData,

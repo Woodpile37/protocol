@@ -4,12 +4,12 @@
 const { getContract, web3 } = require("hardhat");
 const { toBN, toWei, fromWei } = web3.utils;
 const { MAX_UINT_VAL } = require("@uma/common");
+const { lspAddress } = require("./latest-deployment-details.json");
 
 const ERC20 = getContract("ERC20");
 const LongShortPair = getContract("LongShortPair");
 
 // Constants to update
-const lspAddress = "0xD0d8e0ab5529D1Ec025DE9C2504ef9D3aE076ff8";
 const amountOfTokenToMint = toWei(toBN(1));
 
 // Deposit collateral into the LSP Contract to mint tokens.

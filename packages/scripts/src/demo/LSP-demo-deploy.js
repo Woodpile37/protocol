@@ -4,6 +4,8 @@
 const { web3 } = require("hardhat");
 const { utf8ToHex, padRight, toWei } = web3.utils;
 const { getAbi, getAddress } = require("@uma/contracts-node");
+const fs = require("fs");
+const path = require("path");
 
 // Constants
 const chainId = 42;
@@ -87,6 +89,11 @@ const deploy = async () => {
 
   const fpl = await deployedFPL.methods.setLongShortPairParameters(...fplParams).send(transactionOptions);
   console.log("- Financial product library parameters set in transaction: ", fpl.transactionHash);
+
+  // Save lspAddress to file.
+  const savePath = `${path.resolve(__dirname)}/latest-deployment-details.json`;
+  fs.writeFileSync(savePath, JSON.stringify({lspAddress: address}));
+  console.log("Deployment address saved to", savePath);
 };
 
 // Run script.

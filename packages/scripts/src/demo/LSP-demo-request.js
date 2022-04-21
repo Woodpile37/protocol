@@ -2,9 +2,9 @@
 
 // Helper modules
 const { getContract, web3 } = require("hardhat");
+const { lspAddress } = require("./latest-deployment-details.json");
 
 // Constants to update
-const lspAddress = "0xD0d8e0ab5529D1Ec025DE9C2504ef9D3aE076ff8";
 const requestTimestamp = Math.floor(Date.now() / 1000) - 100;
 
 // Request a price from the Optimistic Oracle contract
