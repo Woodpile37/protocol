@@ -69,6 +69,12 @@ const deploy = async () => {
 
   console.log(`Deploying a LSP contract for ` + pairName);
   // Simulate transaction to test before sending to the network.
+
+  const timeDelay = 10000;
+  const delay = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
   const lspAddress = await getAddress("LongShortPairCreator", chainId)
   const lspCreator = new web3.eth.Contract(getAbi("LongShortPairCreator"), lspAddress);
   const address = await lspCreator.methods.createLongShortPair(lspParams).call(transactionOptions);
@@ -79,6 +85,7 @@ const deploy = async () => {
   console.log(`- The contract was deployed in transaction ` + transactionHash);
 
   console.log("Setting FPL parameters...");
+  await delay(timeDelay)
   const deployedFPL = new web3.eth.Contract(
     getAbi("LinearLongShortPairFinancialProductLibrary"),
     financialProductLibrary

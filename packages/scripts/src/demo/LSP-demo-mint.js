@@ -23,6 +23,11 @@ const mint = async () => {
     lspAddress
   );
 
+  const timeDelay = 10000;
+  const delay = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
   console.log("Approving contract to transfer collateral on behalf of user...");
   // Check collateral token associated with LSP contract
   const collateralToken = await lspContract.methods.collateralToken().call()
@@ -37,6 +42,7 @@ const mint = async () => {
   console.log(`- Contract's collateral allowance: ${fromWei(postAllowance.toString())}`);
 
   console.group("Minting ERC20 LSP tokens...");
+  await delay(timeDelay)
   await lspContract.methods.create(amountOfTokenToMint).send({ from: deployer });
   console.log(`- Minted ${fromWei(amountOfTokenToMint)} tokens from LSP contract`);
 };
